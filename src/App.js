@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import Header from "./Components/Header";
+import Instamart from "./Components/Instamart";
+import Cart from "./Cart";
+import Error from "./Components/Error";
+import HomeBody from "./Components/HomeBody";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+      <Header />
 
-export default App;
+      <Outlet />
+    </>
+  );
+};
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/instamart",
+        element: <Instamart />,
+      },
+      { path: "/cart", element: <Cart /> },
+      { path: "/", element: <HomeBody /> },
+    ],
+    errorElement: <Error />,
+  },
+]);
+
+export default appRouter;
