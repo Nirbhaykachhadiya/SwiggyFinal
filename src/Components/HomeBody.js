@@ -2,6 +2,7 @@ import React from "react";
 
 import HomeRestaurant from "./HomeRestaurant";
 import { useHomeRestaurant } from "../utils/useHomeRestaurant";
+import Simmer from "./Simmer";
 
 const HomeBody = () => {
   const { head, restaurant } = useHomeRestaurant();
@@ -9,7 +10,7 @@ const HomeBody = () => {
   return (
     <>
       {restaurant.length == 0 ? (
-        "Loading...."
+        <Simmer />
       ) : (
         <>
           <div className="font-bold text-2xl text-center pt-5 pb-5 shadow-xl">
